@@ -19,7 +19,16 @@
 	    console.log(findGetParameter('cookie'));
 	    console.log(atob(findGetParameter('cookie')));
 	    document.open();
-	    document.write(atob(findGetParameter('cookie')));
+	    var allcookies = atob(findGetParameter('cookie'));
+	    // Get all the cookies pairs in an array
+	    cookiearray = allcookies.split(';');
+            // Now take key value pair out of this array
+	    document.write("<table><tr><td>Key</td><td>Value</td></tr>") 
+	    for(var i=0; i<cookiearray.length; i++) {
+	        name = cookiearray[i].split('=')[0];
+		value = cookiearray[i].split('=')[1];
+		document.write ("<tr><td>" + name + "</td><td>" + value + "</td></tr>");
+            }
 	    document.close();
 	}
       </script>
